@@ -12,6 +12,16 @@
             <span class="lead">@Html.DisplayFor(modelItem => @Model.Descricao)</span>
         </td>
         <br>
+        
+        @using (Html.BeginForm("Adicionar", "Carrinho"))
+        {
+            <div class="pull-right">
+                @Html.HiddenFor(x => x.Id)
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                <input type="submit" class="btn btn-success" value="Comprar" />
+            </div>
+        }
+
         <td>
             <span class="pull-right label label-primary">@Model.Preco.ToString("c")</span>
         </td>
