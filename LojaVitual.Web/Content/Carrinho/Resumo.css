@@ -1,0 +1,17 @@
+﻿
+
+a.carrinho-compras {
+    background-image: url(/Images/carrinhoCompras.png);
+     display: block;
+     text-indent: -9999px;
+    width: 40px;
+    height: 35px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.navbar-right {
+    margin-right: 3%;
+}
+       
+

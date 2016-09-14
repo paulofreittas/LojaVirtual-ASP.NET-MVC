@@ -1,5 +1,8 @@
 ﻿@model LojaVirtual.Dominio.Entidades.Pedido
-    
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" />
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
+
 @{
     ViewBag.Title = "Fechar o Pedido";
 }
@@ -8,15 +11,18 @@
 
 <p>Digite suas informações abaixo</p>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "form" , @class="form-horizontal" }))
 {
     @Html.ValidationSummary()
 
     <h3>Enviar para</h3>
 
-    <div class="form-group">
-        <label>Nome: </label>
-        @Html.TextBoxFor(x => x.NomeCliente, new {@class="form-control"})
+    <div class="form-group" id="nomeCliente">
+        <label for="inputNome" class="col-md-3 control-label">Nome: </label>
+        <div class="col-md-3">
+            @Html.TextBoxFor(x => x.NomeCliente, new { @class = "form-control", id = "inputNome" })
+            @Html.ValidationMessageFor(x => x.NomeCliente)
+        </div>
     </div>
 
     <h3>Dados para Entrega:</h3>
@@ -47,7 +53,7 @@
 
 <script>
     $('#Cep')
-        .change(function(e) {
+        .change(function (e) {
 
             e.preventDefault();
 
@@ -58,7 +64,7 @@
 
             var cep = $('#Cep').val().replace("-", "").replace(".", "");
 
-            $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=json", {}, function(data) {
+            $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=json", {}, function (data) {
                 if (data.resultado_txt = 'sucesso - cep completo') {
                     $('#Endereco').val(data.tipo_logradouro + ' ' + data.logradouro);
                     $('#Cidade').val(data.cidade);
@@ -68,5 +74,62 @@
             });
         });
 </script>
+
+<script>
+    $(document).ready(function () {
+        $('#form').bootstrapValidator({
+            container: '#messages',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                NomeCliente: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The full name is required and cannot be empty'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The email address is required and cannot be empty'
+                        },
+                        emailAddress: {
+                            message: 'The email address is not valid'
+                        }
+                    }
+                },
+                title: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The title is required and cannot be empty'
+                        },
+                        stringLength: {
+                            max: 100,
+                            message: 'The title must be less than 100 characters long'
+                        }
+                    }
+                },
+                content: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The content is required and cannot be empty'
+                        },
+                        stringLength: {
+                            max: 500,
+                            message: 'The content must be less than 500 characters long'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+
+
 
 

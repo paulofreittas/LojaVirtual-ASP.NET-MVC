@@ -10,7 +10,7 @@ namespace LojaVitual.Web.Controllers
     {
 
         private ProdutoRepository _produtoRepository;
-        public int ProdutosPorPagina = 2;
+        public int ProdutosPorPagina = 5;
 
         // GET: Vitrine
         public ViewResult ListaProdutos(string categoria, int pagina = 1)

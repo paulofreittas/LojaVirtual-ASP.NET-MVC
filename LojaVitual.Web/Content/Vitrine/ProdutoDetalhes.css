@@ -1,0 +1,29 @@
+﻿
+.produtos {
+    margin-right: 2%;
+}
+
+.descricao {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.nome-produto {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+
+.tbl-preco {
+    text-align: center;
+}
+
+.preco {
+    padding: 3%;
+}
+
+.btn-comprar {
+    text-align: center;
+    margin-top: 4%;
+}

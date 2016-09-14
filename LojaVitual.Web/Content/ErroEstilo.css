@@ -1,0 +1,14 @@
+﻿
+
+
+
+.field-validation-error {
+    color: red;
+    font-style: italic;
+}
+
+label.error{
+     color: red;
+
+       }
+

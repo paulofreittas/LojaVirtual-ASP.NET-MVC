@@ -1,30 +1,31 @@
 ﻿@model LojaVirtual.Dominio.Entidades.Produto
 
-<div class="well col-md-3">
-    <tr>
-        <strong>
+<link href="~/Content/Vitrine/ProdutoDetalhes.css" rel="stylesheet" />
+
+
+<div class="produtos well col-md-3 col-sm-3">
+    <div class="nome-produto">
+        @Html.DisplayFor(modelItem => @Model.Nome)
+    </div>
+    <div class="descricao">
+        @Html.DisplayFor(modelItem => @Model.Descricao)
+    </div>
+    <div class="tbl-preco">
+        <tr>
             <td>
-                @Html.DisplayFor(modelItem => @Model.Nome)
+                <div class="preco label label-primary" id="preco">
+                    @Model.Preco.ToString("c")
+                </div>
             </td>
-        </strong>
-        <br>
-        <td>
-            <span class="lead">@Html.DisplayFor(modelItem => @Model.Descricao)</span>
-        </td>
-        <br>
-        
+        </tr>
+    </div>
+    <div class="btn-comprar">
         @using (Html.BeginForm("Adicionar", "Carrinho"))
         {
-            <div class="pull-right">
-                @Html.HiddenFor(x => x.Id)
-                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                <input type="submit" class="btn btn-success" value="Comprar" />
-            </div>
+            @Html.HiddenFor(x => x.Id)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" class="btn btn-success" value="Comprar"/>
         }
-
-        <td>
-            <span class="pull-right label label-primary">@Model.Preco.ToString("c")</span>
-        </td>
-        <br>
-    </tr>
+    </div>
+  
 </div>
