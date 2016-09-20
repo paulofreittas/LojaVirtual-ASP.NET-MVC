@@ -26,7 +26,6 @@ namespace LojaVitual.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
                       "~/Content/ErroEstilo.css",
                       "~/Content/_Layout/_LayoutPrincipal.css",
                       "~/Content/Vtrine/ListaProdutos.css",
